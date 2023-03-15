@@ -1,0 +1,12 @@
+<script type="text/javascript">
+  const addItem = ({ data }) => {
+    const message = document.createElement('li');
+    message.innerText = 'New message: ' + data;
+    document.body.appendChild(message);
+  };
+
+  const eventSourceGo = new EventSource('http://localhost:3000/sse');
+  const eventSourceNest = new EventSource('http://localhost:3001/sse');
+  eventSourceGo.onmessage = addItem;
+  eventSourceNest.onmessage = addItem;
+</script>
